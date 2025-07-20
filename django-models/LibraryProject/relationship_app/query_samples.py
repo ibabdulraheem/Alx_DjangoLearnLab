@@ -8,9 +8,9 @@ book = Book.objects.all(author = 'author')
 book.save()
 
 """ List all books in the Library """
-book = Library.objects.all()
-for books in book:
-  print(book)
+library = Library.objects.all()
+for books in library:
+  print(books)
 
 """ Retrieve the Librarian for a Library """
 librarian = Librarian.objects.get(name = "library_name")
