@@ -13,7 +13,7 @@ for books in library:
   print(books)
 
 """ Retrieve the Librarian for a Library """
-librarian = Librarian.objects.get(name = "librarian_name")
+library = Library.objects.get(name ='librarian_name')
 
 
 
