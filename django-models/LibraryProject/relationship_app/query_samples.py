@@ -7,12 +7,12 @@ from relationship_app.models import Librarian
 books = Book.objects.get(author = 'author_name')
 print(books)
 
-""" List all books in the Library """
-Library.objects.get(name="library_name")
-print(books.all())
+# """ List all books in the Library """
+# Library.objects.get(name="library_name")
+# print(books.all())
 
-""" Retrieve the Librarian for a Library """
-library = Library.objects.get(name ="librarian_name")
+# """ Retrieve the Librarian for a Library """
+# library = Library.objects.get(name ="librarian_name")
 
 
 
