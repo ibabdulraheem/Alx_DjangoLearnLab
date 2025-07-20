@@ -7,4 +7,4 @@ from relationship_app.models import Book
 def book_list (request):
   books = Book.objects.all()
   template_name = 'list_books.html'
-  return render (request,books/template_name)
+  return render (books/template_name)
