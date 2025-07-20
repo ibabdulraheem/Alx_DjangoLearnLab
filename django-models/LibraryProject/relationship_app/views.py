@@ -6,4 +6,4 @@ from relationship_app.models import Book
 """ creating view for a book model """
 def book_list (request):
   books = Book.objects.all()
-  return render (request,'relationship_app/list_books.html')
+  return render (request,books/'relationship_app/list_books.html')
