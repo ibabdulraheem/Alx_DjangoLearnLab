@@ -27,14 +27,19 @@ class BookListView(ListView):
 """ User registration view""" 
 class SignUpView(CreateView):
   form_class = UserCreationForm
-  success_url = reverse_lazy('register.html')
+  success_url = reverse_lazy('login')
 
 """ User Login View"""
-urlpatterns = [
-  path('login/',LoginView.as_view(template_name = 'relationship_app/login.html'), name = 'login'),
-]
+class UserLoginView(LoginView):
+    template_name = 'relationship_app/login.html' 
+    redirect_authenticated_user = True 
+
+    def get_success_url(self):
+        return reverse_lazy('dashboard')
 
 """ Use Logout View"""
-urlpatterns = [
-  path ('logout/',LogoutView.as_view(template_name = 'relationship_app/logout.html'), name ='logout')
-]
+class UserLogoutView(LogoutView):
+    template_name = 'relationship_app/logout.html'
+
+    def dispatch(self, request, *args, **kwargs):
+        return reverse_lazy('home_page')
