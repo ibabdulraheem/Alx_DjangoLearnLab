@@ -9,7 +9,6 @@ print(books)
 
 """ List all books in a Library """
 books= Library.objects.get(name= 'library_name')
-books.all()
 
 
 """ Retrieve the Librarian for a Library """
