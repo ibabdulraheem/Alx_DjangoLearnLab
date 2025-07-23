@@ -8,8 +8,9 @@ books = Book.objects.get(author = 'author_name').all()
 print(books)
 
 """ List all books in a Library """
-books = Library.objects.all()
-books.get(name = 'library_name')
+library = Library.objects.get(name = 'library_name')
+books = library.books.all()
+print(books)
 
 
 
