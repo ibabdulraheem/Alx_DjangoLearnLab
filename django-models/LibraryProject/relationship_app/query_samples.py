@@ -10,7 +10,7 @@ print(books)
 """ List all books in a Library """
 books_by_library = Library.objects.filter(name = 'library_name')
 for books in books_by_library:
-  print(books.name)
+  print(books)
 
 
 
