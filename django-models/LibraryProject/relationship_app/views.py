@@ -14,14 +14,14 @@ from django.contrib.auth import login
 """ creating view for a book model """
 def book_list (request):
   books = Book.objects.all()
-  return render (request,books/'relationship_app/list_books.html')
+  return render (request,books/'templates/relationship_app/list_books.html')
 
 class BookListView(ListView):
   model = Library
   books = Library.objects.get(name = 'library_name')
   for book in books:
     print(book)
-  template_name = 'relationship_app/library_detail.html'
+  template_name = 'templates/relationship_app/library_detail.html'
   success_url = reverse_lazy('book')
 
 """ User registration view""" 
