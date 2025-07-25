@@ -18,8 +18,8 @@ class Book(models.Model):
 class Library(models.Model):
   name = models.CharField()
   books = models.ManyToManyField(Book)
-  # def __str__(self):
-  #   return f"{self.books} in {self.name}"
+  def __str__(self):
+    return f"{self.books} in {self.name}"
 
 class Librarian(models.Model):
   name = models.CharField()
