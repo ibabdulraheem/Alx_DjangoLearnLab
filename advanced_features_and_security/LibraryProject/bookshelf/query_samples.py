@@ -1,7 +1,7 @@
 
-from relationship_app.models import Book
-from relationship_app.models import Library
-from relationship_app.models import Librarian
+from bookshelf.models import Book
+from bookshelf.models import Library
+from bookshelf.models import Librarian
 
 """ Query all books by specific author """
 books = Book.objects.get(author = 'author_name').all()
