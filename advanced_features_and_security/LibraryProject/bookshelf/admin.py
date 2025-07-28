@@ -3,6 +3,6 @@ from .models import CustomUser,BaseUserAdmin
 
 # Register your models here.
 
-'admin.site.register(CustomUser, BaseUserAdmin)'
+admin.site.register(CustomUser, BaseUserAdmin)
 
 
