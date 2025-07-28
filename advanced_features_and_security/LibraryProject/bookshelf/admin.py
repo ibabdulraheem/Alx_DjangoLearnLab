@@ -1,8 +1,8 @@
 from django.contrib import admin
-from .models import CustomUser,CustomUserAdmin,CustomUserManager
+from .models import CustomUser,BaseUserAdmin
 
 # Register your models here.
 
-admin.site.register(CustomUser, CustomUserAdmin, CustomUserManager)
+'admin.site.register(CustomUser, BaseUserAdmin)'
 
 
