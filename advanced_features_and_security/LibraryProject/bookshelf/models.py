@@ -1,7 +1,7 @@
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import AbstractUser, BaseUserManager
 from django.db import models
 from django.contrib.auth.backends import BaseBackend
-from django.contrib.auth.models import AbstractUser, BaseUserManager
+from django.contrib.auth.models import AbstractUser
 
 
 class CustomUser(AbstractUser):
@@ -11,7 +11,7 @@ class CustomUser(AbstractUser):
     profile_photo = models.ImageField(null=True,blank=True)
 
 """ Creating custom user manager """
-class CustomUserManager(BaseUserManager):
+class CustomUserAdmin(BaseUserManager):
      
      def create_user(self, email, password, **extra_fields):
         if not email:
