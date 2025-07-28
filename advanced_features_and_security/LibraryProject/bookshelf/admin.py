@@ -3,8 +3,8 @@ from .models import CustomUser,CustomUserManager,CustomUserAdmin
 
 # Register your models here.
 
-admin.site.register(CustomUser )
-admin.site.register(CustomUserAdmin)
+admin.site.register(CustomUser ,CustomUserAdmin )
+
 
 
 
