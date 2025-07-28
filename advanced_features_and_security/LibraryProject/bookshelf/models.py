@@ -1,9 +1,10 @@
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import AbstractBaseUser
 from django.db import models
+from django.contrib.auth.backends import BaseBackend
 
 
-class CustomUser(AbstractUser):
-    username = models.CharField(max_length = 50)
+class UserSignUp(AbstractBaseUser):
     email = models.EmailField(unique=True)
-    date_of_birth = models.IntergerField(unique = True)
-    profile_photo = models.ImageField(default = 'default.jpg')
+    phone_number = models.CharField(max_length=20)
+    date_of_birth = models.DateField(null = True)
+    profile_photo = models.ImageField(null=True,blank=True)

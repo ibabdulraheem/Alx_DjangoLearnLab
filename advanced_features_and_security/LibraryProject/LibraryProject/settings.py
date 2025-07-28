@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'relationship_app.apps.RelationshipAppConfig',
+    'bookshelf',
 ]
 
 MIDDLEWARE = [
@@ -121,3 +121,6 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+""" Update settings to use the custom usermodel """
+AUTH_USER_MODEL = 'bookshelf.UserSignUp'
