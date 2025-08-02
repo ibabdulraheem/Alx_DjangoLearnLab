@@ -11,7 +11,7 @@ class CustomUser(AbstractUser):
     profile_photo = models.ImageField(null=True,blank=True)
 
 """ Creating custom user manager """
-class CustomUserManager(BaseUserManager):
+class CustomUserAdmin(BaseUserManager):
      
      def create_user(self, email, password, **extra_fields):
         if not email:
@@ -32,4 +32,19 @@ class CustomUserManager(BaseUserManager):
             raise ValueError(('Superuser must have is_superuser=True.'))
         return self.create_user(email, password, **extra_fields)
      
+""" Setting up permission on my model called Book """
+class Books(models.Model):
+    title = models.CharField(max_length=200)
+    author = models.CharField(max_length=100)
+    published_date = models.DateField()
 
+    class Meta:
+        permissions = [
+            ("can_view_book", "Can view book"),
+            ("can_create_book", "Can create new book"),    # permissions with their code names
+            ("can_edit_book", "Can edit book details"),
+            ("can_delete_book", "Can delete book"),
+        ]
+
+    def __str__(self):
+        return self.title
