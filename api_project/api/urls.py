@@ -19,6 +19,18 @@ from django.urls import path
 from api.views import BookList
 from django.urls import path, include
 
+from django.urls import path, include
+from rest_framework.routers import DefaultRouter
+from .views import BookViewSet
+
+["DefaultRouter()", "router.urls"]
+router = DefaultRouter()
+router.register(r'books_all', BookViewSet, basename='book_all')
+
+urlpatterns = [
+    path('api/', include(router.urls)),
+]
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
