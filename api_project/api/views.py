@@ -1,10 +1,23 @@
-from django.shortcuts import render
-from rest_framework import generics
+
 from .models import Book
 from .serializers import BookSerializer
 from rest_framework import viewsets
-from .models import Book
 from .serializers import BookSerializer
+from rest_framework import viewsets
+from rest_framework.permissions import IsAuthenticatedOrReadOnly,IsAdminUser
+from .models import Book
+
+class BookViewSetIsAuthenticated(viewsets.ModelViewSet):
+    queryset = Book.objects.all()
+    serializer_class = BookSerializer
+    permission_classes = [IsAuthenticatedOrReadOnly]
+
+
+class BookViewSetIsAdminUser(viewsets.ModelViewSet):
+    queryset = Book.objects.all()
+    serializer_class = BookSerializer
+    permission_classes = [IsAdminUser]
+
 
 
     
@@ -15,10 +28,10 @@ from .serializers import BookSerializer
 #   queryset = Book.objects.all()
 #   serializer_class = BookSerializer
 
-["BookViewSet"]
-class BookViewSet(viewsets.ModelViewSet):
-  queryset = Book.objects.all()
-  serializer_class = BookSerializer
+# ["BookViewSet"]
+# class BookViewSet(viewsets.ModelViewSet):
+#   queryset = Book.objects.all()
+#   serializer_class = BookSerializer
 
 
   
