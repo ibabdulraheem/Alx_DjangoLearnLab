@@ -2,7 +2,7 @@
 
 from django.contrib import admin
 from django.urls import path
-from my_app.views import BookListCreateAPIView
+from .views import BookListCreateAPIView
 
 
 
@@ -28,6 +28,6 @@ urlpatterns = [
 ]
 
 urlpatterns = [
-    path('books/', views=BookListCreateAPIView.as_view(), name='book-list-create'),
+    path('books/', views.BookListCreateAPIView.as_view(), name='book-list-create'),
 ]
 

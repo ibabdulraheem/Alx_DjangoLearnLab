@@ -18,6 +18,13 @@ from django.contrib import admin
 from django.urls import path
 from api.views import BookList
 from django.urls import path, include
+from django.urls import path, include
+from rest_framework.authtoken import views
+
+urlpatterns = [
+    # ... other URL patterns
+    path('api-token-auth/', views.obtain_auth_token),
+]
 
 
 urlpatterns = [
