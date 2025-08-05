@@ -1,6 +1,7 @@
 from django.db import models
 
 # Create your models here.
+# Checks for the installation of the project with Django
 
 """ creating 2 data models: Book and Author"""
 class Author(models.Model):
