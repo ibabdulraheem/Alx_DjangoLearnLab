@@ -1,9 +1,6 @@
 from django.db import models
 
 # Create your models here.
-from django.db import models
-
-# Create your models here.
 
 """ creating 2 data models: Book and Author"""
 class Author(models.Model):
