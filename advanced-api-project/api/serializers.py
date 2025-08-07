@@ -1,17 +1,23 @@
 from rest_framework import serializers
 from .models import Author, Book
+import datetime
 
 
 
 """ Creating Serializers for the Author and Book """
-#  api/models.py doesn't contain: ["class Author(models.Model)", "class Book(models.Model)"]
 
-class AuthorSerializer (serializers.ModelSerializer):
+class AuthorSerializer(serializers.ModelSerializer):
   class meta:
     model = Author
     field = ['name']
 
-class BookSerializer (serializers.ModelSerializer):
+class BookSerializer(serializers.ModelSerializer):
   class meta:
     model = Book
     field = '__all__'
+
+    def validate_publication_year(self, value):
+        current_year = datetime.date.today().year
+        if value > current_year:
+            raise serializers.ValidationError("Publication year cannot be in the future.")
+        return value
