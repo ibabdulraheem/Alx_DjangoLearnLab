@@ -23,6 +23,7 @@ class BookSerializer(serializers.ModelSerializer):
         return value
     
 # Creating a Nested Serializer 
+#["(many=True, read_only=True)"]
 class BookSerializer(serializers.ModelSerializer):
    name = AuthorSerializer(many = True, read_only = True)
    class meta:
