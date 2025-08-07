@@ -22,6 +22,7 @@ class BookSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError("Publication year cannot be in the future.")
         return value
     
+# Creating a Nested Serializer 
 class BookSerializer(serializers.ModelSerializer):
    name = AuthorSerializer(many = True, read_only = True)
    class meta:
