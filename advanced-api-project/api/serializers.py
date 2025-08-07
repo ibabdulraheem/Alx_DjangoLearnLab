@@ -4,6 +4,7 @@ from .models import Author, Book
 
 
 """ Creating Serializers for the Author and Book """
+#  ["class Author(models.Model)", "class Book(models.Model)"]
 
 class AuthorSerializer (serializers.ModelSerializer):
   class meta:
