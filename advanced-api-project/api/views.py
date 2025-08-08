@@ -2,7 +2,7 @@ from django.shortcuts import render
 from rest_framework import generics
 from .models import Book, Author
 from .serializers import BookSerializer
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticated
 
 
 # Create your views here.  
@@ -19,7 +19,7 @@ class CustomBookDetailView(generics.DetailApiView):
 class CustomBookCreateView(generics.CreateApiView):
   queryset = Book.objects.all()
   serializer_class = BookSerializer
-  permission_classes = [IsAuthenticated]
+  permission_classes = [IsAuthenticatedOrReadOnly]
 
 class CustomBookUpdateView(generics.UpdateApiView):
   queryset = Book.objects.all()
