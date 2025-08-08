@@ -2,6 +2,8 @@ from django.shortcuts import render
 from rest_framework import generics
 from .models import Book, Author
 from .serializers import BookSerializer
+from rest_framework.permissions import IsAuthenticated
+
 
 # Create your views here.  
 """ Creating Custom Generic views for the model Book"""
@@ -17,10 +19,12 @@ class CustomBookDetailView(generics.DetailApiView):
 class CustomBookCreateView(generics.CreateApiView):
   queryset = Book.objects.all()
   serializer_class = BookSerializer
+  permission_classes = [IsAuthenticated]
 
 class CustomBookUpdateView(generics.UpdateApiView):
   queryset = Book.objects.all()
   serializer_class = BookSerializer
+  permission_classes = [IsAuthenticated]
 
 class CustomBookDeleteView(generics.DeleteApiView):
   queryset = Book.objects.all()
