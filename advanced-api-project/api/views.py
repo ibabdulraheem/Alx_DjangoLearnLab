@@ -3,6 +3,8 @@ from rest_framework import generics
 from .models import Book, Author
 from .serializers import BookSerializer
 from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticated
+from .filters import BookFilter
+from django_filters.rest_framework import DjangoFilterBackend
 
 
 # Create your views here.  
@@ -11,6 +13,8 @@ from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticate
 class CustomBookListView(generics.ListApiView):
   queryset = Book.objects.all()
   serializer_class = BookSerializer
+  filter_backends = [DjangoFilterBackend]
+  filterset_class =BookFilter
 
 class CustomBookDetailView(generics.DetailApiView):
   queryset = Book.objects.all()
