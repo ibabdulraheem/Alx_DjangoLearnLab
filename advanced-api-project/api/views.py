@@ -7,6 +7,7 @@ from .filters import BookFilter
 from django_filters.rest_framework import DjangoFilterBackend
 from django_filters import rest_framework
 from rest_framework import filters
+from rest_framework.filters import OrderingFilter
 
 
 
@@ -24,6 +25,8 @@ class CustomBookListView(generics.ListApiView):
 class CustomBookDetailView(generics.DetailApiView):
   queryset = Book.objects.all()
   serializer_class = BookSerializer
+  filter_backend = [filters.OrderingFilter]
+  ordering_fields = ['title', 'publication_year']
 
 class CustomBookCreateView(generics.CreateApiView):
   queryset = Book.objects.all()
