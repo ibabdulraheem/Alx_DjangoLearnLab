@@ -12,10 +12,10 @@ from django.contrib.auth.views import LoginView,LogoutView
 from django.contrib.auth import login
 # Create your views here.
 """ creating view for a book model """
-def book_list (request):
+def list_books (request):
   books = Book.objects.all()
   context = {'book_list': books}  # Create a context dictionary with book list
-  return render(request, 'books/book_list.html', context)
+  return render(request, 'books/list_books.html', context)
 
 class BookListView(ListView):
   model = Library
