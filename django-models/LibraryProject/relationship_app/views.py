@@ -22,18 +22,18 @@ class BookListView(ListView):
   books = Library.objects.get(name = 'library_name')
   for book in books:
     print(book)
-  template_name = 'templates/relationship_app/library_detail.html'
+  template_name = 'library_detail/library_detail.html'
   success_url = reverse_lazy('book')
 
 """ User registration view""" 
 class SignUpView(CreateView):
   form_class = UserCreationForm
-  template_name = 'templates/relationship_app/register.html'
+  template_name = 'register/register.html'
   success_url = reverse_lazy('login')
 
 """ User Login View"""
 class UserLoginView(LoginView):
-    template_name = 'templates/relationship_app/login.html' 
+    template_name = 'login/login.html' 
     redirect_authenticated_user = True 
 
     def get_success_url(self):
@@ -41,7 +41,7 @@ class UserLoginView(LoginView):
 
 """ Use Logout View"""
 class UserLogoutView(LogoutView):
-    template_name = 'templates/relationship_app/logout.html'
+    template_name = 'logout/logout.html'
 
     def dispatch(self, request, *args, **kwargs):
         return reverse_lazy('home_page')
