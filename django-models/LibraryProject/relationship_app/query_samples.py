@@ -3,16 +3,14 @@ from relationship_app.models import Book
 from relationship_app.models import Library
 from relationship_app.models import Librarian, Author
 
-""" Query all books by specific author """
-author = Author.objects.get(author='author_name')
-author.objects.filter(author='author')
+""" Query all books by specific author """ 
 # books = Book.objects.get(author = 'author_name').all()
 # print(books)
+Author.objects.get(author='author_name').filter(author='author')
 
-""" List all books in a Library """
+#"List all books in a Library
 # ["Library.objects.get(name=library_name)"]
-library=Library.objects.get(name="library_name")
-library.books.all()
+Library.objects.get(name="library_name").books.all()
 
 
 
