@@ -11,6 +11,9 @@ from django.views.generic import CreateView
 from django.contrib.auth.views import LoginView,LogoutView
 from django.contrib.auth import login
 # Create your views here.
+
+
+["relationship_app/list_books.html"]
 """ creating view for a book model """
 def list_books (request):
   books = Book.objects.all() 
