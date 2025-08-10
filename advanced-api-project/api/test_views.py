@@ -175,3 +175,5 @@ class BookAPITests(APITestCase):
         self.assertEqual(response.data[0]['title'], 'To Kill a Mockingbird')
         self.assertEqual(response.data[1]['title'], 'The Catcher in the Rye')
         self.assertEqual(response.data[2]['title'], '1984')
+
+# ["self.client.login"]
