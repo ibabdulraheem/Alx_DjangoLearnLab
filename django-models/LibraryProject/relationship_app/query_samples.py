@@ -7,7 +7,8 @@ from relationship_app.models import Librarian
 books = Book.objects.get(author = 'author_name').all()
 print(books)
 
-# """ List all books in a Library """
+""" List all books in a Library """
+# ["Library.objects.get(name=library_name)"]
 library=Library.objects.get(name="library_name")
 library.books.all()
 
