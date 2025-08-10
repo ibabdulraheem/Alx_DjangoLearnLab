@@ -13,7 +13,7 @@ from django.contrib.auth import login
 # Create your views here.
 
 
-["relationship_app/list_books.html"]
+# LibraryProject/relationship_app/views.py doesn't contain: ["relationship_app/library_detail.html"]
 """ creating view for a book model """
 def list_books (request):
   books = Book.objects.all() 
