@@ -4,7 +4,7 @@ from django.contrib.auth import views as auth_views
 from blog import views as user_views
 from . import views
 
-
+# templates for listing, viewing, creating, editing, and deleting blog posts.
 
 urlpattern = [
 path('register/', user_views.register.as_view(template_name = 'blog/register.html'),name='register'),
