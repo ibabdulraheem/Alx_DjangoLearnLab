@@ -8,6 +8,8 @@ from .forms import PostForm,CommentForm
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse, reverse_lazy
+from django.db import models
+from django.db.models import Q
 
 
 
@@ -151,3 +153,22 @@ class CommentDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
 
 #  ["CommentCreateView", "CommentUpdateView", "CommentDeleteView"]
+
+# Creating a search view using Q objects:
+from django.db.models import Q
+from django.shortcuts import render
+from .models import Post
+
+
+# ["Post.objects.filter", "title__icontains", "tags__name__icontains", "content__icontains"]
+def post_search(request):
+    query = request.GET.get('q')
+    results = []
+    if query:
+        results = Post.objects.filter(
+            Q(title__icontains=query) |
+            Q(content__icontains=query) |
+            Q(tags__name__icontains=query)
+        ).distinct()
+    return render(request, 'blog/post_search.html', {'query': query, 'results': results})
+
