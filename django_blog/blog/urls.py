@@ -10,7 +10,7 @@ urlpattern = [
 path('register/', user_views.register.as_view(template_name = 'blog/register.html'),name='register'),
 path('login/',auth_views.LoginView.as_view(template_name = 'blog/login.html'),name = 'login'),
 path('login/',auth_views.LogoutView.as_view(template_name = 'blog/logout.html'),name = 'logout'),
-path('profile/')
+path('profile/'),
 path('', views.post_list(template_name='blog/post_list.html'), name='post_list'), #list all post
 path('post/new/', views.create_post(template_name='blog/create_post.html'), name='create_post'),  # create new post
 path('post/<int:pk>/', views.post_detail(template_name='blog/post_detail.html'), name='post_detail'), # view single post
