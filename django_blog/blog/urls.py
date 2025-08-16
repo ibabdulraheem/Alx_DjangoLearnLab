@@ -21,6 +21,7 @@ path('post/<int:pk>/comment/new/', CommentCreateView.as_view(), name='comment_cr
 path('comment/<int:pk>/edit/', CommentUpdateView.as_view(), name='comment_edit'),
 path('comment/<int:pk>/delete/', CommentDeleteView.as_view(), name='comment_delete'),
 path('search/', views.post_search, name='post_search'),
+path("tags/<str:tag_name>/", views.post_by_tag, name="post_by_tag"),
 ]
 
 # ["comment/<int:pk>/update/", "post/<int:pk>/comments/new/", "comment/<int:pk>/delete/"]
