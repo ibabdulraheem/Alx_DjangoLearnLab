@@ -3,7 +3,7 @@ from django.urls import path,include
 from django.contrib.auth import views as auth_views
 from blog import views as user_views
 from . import views
-from .views import CommentCreateView, CommentUpdateView, CommentDeleteView
+from .views import CommentCreateView, CommentUpdateView, CommentDeleteView,PostByTagListView
 
 # templates for listing, viewing, creating, editing, and deleting blog posts.
 
@@ -22,6 +22,7 @@ path('comment/<int:pk>/edit/', CommentUpdateView.as_view(), name='comment_edit')
 path('comment/<int:pk>/delete/', CommentDeleteView.as_view(), name='comment_delete'),
 path('search/', views.post_search, name='post_search'),
 path("tags/<str:tag_name>/", views.post_by_tag, name="post_by_tag"),
+path('tags/<slug:tag_slug>/', views.PostByTagListView.as_view(),name = "post_by_tag"),
 ]
 
 # ["comment/<int:pk>/update/", "post/<int:pk>/comments/new/", "comment/<int:pk>/delete/"]
