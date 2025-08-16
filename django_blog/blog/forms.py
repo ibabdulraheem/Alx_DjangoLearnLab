@@ -2,6 +2,7 @@
 from django import forms
 from .models import Post,Comment
 from django.contrib.auth.forms import UserCreationForm
+from taggit.forms import TagWidget
 
 class CustomUserCreationForm(UserCreationForm):
   email = forms.EmailField(required=True)
@@ -13,7 +14,11 @@ class CustomUserCreationForm(UserCreationForm):
 class PostForm(forms.ModelForm):
   class meta:
     model = Post
-    fields = ['title','content']
+    fields = ['title','content','tags']
+    widgets = {
+       'tags': TagWidget(),
+    }
+
     
 # CREATING COMMENT FORM TO BE USED IN THE COMMENT VIEWS
 # ["CommentForm(forms.ModelForm)", "model = Comment"]
@@ -38,5 +43,6 @@ class CommentForm(forms.ModelForm):
         if len(text.strip()) < 5:
             raise forms.ValidationError("Comment must be at least 5 characters long.")
         return text
+
 
 
