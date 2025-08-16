@@ -1,29 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>All Posts</title>
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-  <header>
-    <h1>Blog Posts</h1>
-    <a href="create.html" class="btn">Create New Post</a>
-  </header>
+{% extends 'base.html' %}
 
-  <main>
-    <ul class="post-list">
-      <!-- Loop through posts -->
-      {% for post in posts %}
+{% block title %}All Posts{% endblock %}
+
+{% block content %}
+  <h2>All Blog Posts</h2>
+  <ul class="post-list">
+    {% for post in posts %}
       <li class="post-item">
-        <h2><a href="detail/{{ post.id }}">{{ post.title }}</a></h2>
-        <p>{{ post.content|slice:":100" }}...</p>
-        <a href="detail/{{ post.id }}" class="btn-small">Read More</a>
+        <h3>
+          <a href="{% url 'post_detail' post.pk %}">{{ post.title }}</a>
+        </h3>
+        <p>{{ post.content|truncatewords:20 }}</p>
+        <a href="{% url 'post_detail' post.pk %}" class="btn-small">Read More</a>
       </li>
-      {% empty %}
+    {% empty %}
       <p>No posts available.</p>
-      {% endfor %}
-    </ul>
-  </main>
-</body>
-</html>
+    {% endfor %}
+  </ul>
+{% endblock %}
