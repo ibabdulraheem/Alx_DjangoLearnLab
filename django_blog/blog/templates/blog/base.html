@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Django Blog{% endblock %}</title>
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
+
 <body>
     <header>
         <nav>
@@ -27,7 +29,14 @@
     <footer>
         <p>&copy; 2024 Django Blog</p>
     </footer>
+    <!-- Adding Search form -->
+    <form method="get" action="{% url 'post_search' %}">
+        <input type="text" name="q" placeholder="Search posts..." value="{{ request.GET.q }}">
+        <button type="submit">Search</button>
+    </form>
+
 
     <script src="{% static 'js/scripts.js' %}"></script>
 </body>
+
 </html>

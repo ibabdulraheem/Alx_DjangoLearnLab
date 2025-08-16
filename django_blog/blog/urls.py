@@ -20,6 +20,7 @@ path('post/<int:pk>/delete/', views.delete_post(template_name='blog/post_form_de
 path('post/<int:pk>/comment/new/', CommentCreateView.as_view(), name='comment_create'),
 path('comment/<int:pk>/edit/', CommentUpdateView.as_view(), name='comment_edit'),
 path('comment/<int:pk>/delete/', CommentDeleteView.as_view(), name='comment_delete'),
+path('search/', views.post_search, name='post_search'),
 ]
 
 # ["comment/<int:pk>/update/", "post/<int:pk>/comments/new/", "comment/<int:pk>/delete/"]
