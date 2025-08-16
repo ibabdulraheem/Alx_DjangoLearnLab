@@ -3,6 +3,7 @@ from django.urls import path,include
 from django.contrib.auth import views as auth_views
 from blog import views as user_views
 from . import views
+from .views import CommentCreateView, CommentUpdateView, CommentDeleteView
 
 # templates for listing, viewing, creating, editing, and deleting blog posts.
 
@@ -16,4 +17,9 @@ path('post/new/', views.create_post(template_name='blog/post_form.html'), name='
 path('post/<int:pk>/', views.post_detail(template_name='blog/post_detail.html'), name='post_detail'), # view single post
 path('post/<int:pk>/update/', views.update_post(template_name='blog/post_form.html'), name='update_post'), # Edit existing post
 path('post/<int:pk>/delete/', views.delete_post(template_name='blog/post_form_delete.html'), name='delete_post'), # Delete a post
+path('post/<int:pk>/comment/new/', CommentCreateView.as_view(), name='comment_create'),
+path('comment/<int:pk>/edit/', CommentUpdateView.as_view(), name='comment_edit'),
+path('comment/<int:pk>/delete/', CommentDeleteView.as_view(), name='comment_delete'),
 ]
+
+# ["comment/<int:pk>/update/", "post/<int:pk>/comments/new/", "comment/<int:pk>/delete/"]
