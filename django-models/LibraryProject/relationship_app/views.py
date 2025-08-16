@@ -28,7 +28,7 @@ class BookListView(ListView):
   success_url = reverse_lazy('book')
 
 """ User registration view""" 
-class register(CreateView):
+class SignUpView(CreateView):
   form_class = UserCreationForm
   template_name = 'relationship_app/register.html'
   success_url = reverse_lazy('login')

@@ -4,6 +4,9 @@ from .forms import CustomUserCreationForm
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from .models import Post
+from .forms import PostForm
+from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth.decorators import login_required
 
 
 
@@ -45,8 +48,38 @@ class PostCreateView(LoginRequiredMixin,CreateView):
         return super().form_valid(form)
 
 # View to update an existing blog post which requires the user loggind first
-class PostUpdateView(UpdateView):
+class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin,UpdateView):
     model = Post
+    fields = ['title', 'content']
+    template_name = 'post_form.html'
+
+
+
+# view that handles FORM submission
+@login_required
+def create_post(request):
+    if request.method == 'POST':
+        form = PostForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit = False)
+            post.author = request.user
+            post.save()
+            return redirect ('post_detail',pk = post.pk)
+        else:
+            form = PostForm()
+        return render (request,'blog/create_post.html',{'form':form})
+
+@login_required
+def update_post(request, pk):
+    post = get_object_or_404(Post, pk=pk, author=request.user)
+    if request.method == 'POST':
+        form = PostForm(request.POST, instance=post)
+        if form.is_valid():
+            form.save()
+            return redirect('post_detail', pk=post.pk)
+    else:
+        form = PostForm(instance=post)
+    return render(request, 'blog/update_post.html', {'form': form})
     
     
 
