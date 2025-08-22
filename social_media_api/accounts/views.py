@@ -35,6 +35,6 @@ class LoginView(ObtainAuthToken):
     def get_object(self):
         return self.request.user
     
-    #serializers.CharField()
+    
 
 
