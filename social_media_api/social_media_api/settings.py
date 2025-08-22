@@ -133,4 +133,5 @@ AUTH_USER_MODEL = 'accounts.CustomUser'
 urlpatterns =[
   path('admin/',admin.site.urls),
   path('accounts/api',include('accounts.urls')),
+  path('api/', include('posts.urls')),
 ]
