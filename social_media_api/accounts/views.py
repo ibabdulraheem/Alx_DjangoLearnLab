@@ -8,9 +8,9 @@ from .serializers import RegisterSerializer
 from rest_framework import response, permissions
 
 
-#accounts/serializers.py doesn't contain: ["from rest_framework.authtoken.models import Token", "serializers.CharField()", "Token.objects.create", "get_user_model().objects.create_user"]
+
 #Views for Registration endpoint
-User = get_user_model()
+User=get_user_model()
 class RegistrationView(generics.CreateApiView):
   queryset = User.objects.all()
   serializer_class = RegisterSerializer
@@ -34,5 +34,7 @@ class LoginView(ObtainAuthToken):
 
     def get_object(self):
         return self.request.user
+    
+    #"serializers.CharField()"
 
 
