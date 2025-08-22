@@ -1,6 +1,7 @@
 from django.contrib import admin
 from django.urls import path , include
 
+
 """
 Django settings for social_media_api project.
 
@@ -43,7 +44,8 @@ INSTALLED_APPS = [
     'accounts',
     'posts',
     'rest_framework',
-    'rest_framework.authtoken' # Stores tokens
+    'rest_framework.authtoken' ,# Stores tokens
+    'django_filters',
 ]
 
 MIDDLEWARE = [
@@ -135,3 +137,18 @@ urlpatterns =[
   path('accounts/api',include('accounts.urls')),
   path('api/', include('posts.urls')),
 ]
+
+#Rest_framework
+REST_FRAMEWORK = {
+    "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
+    "PAGE_SIZE": 10,  # default items per page
+}
+
+REST_FRAMEWORK = {
+    "DEFAULT_FILTER_BACKENDS":[
+        "django_filters.rest_framework.DjangoFilterBackend",
+        "rest_framework.filters.SearchFilter",
+        "rest_framework.filters.OrderingFilter"
+        ]
+}
+
