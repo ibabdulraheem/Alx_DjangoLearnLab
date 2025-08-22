@@ -1,3 +1,6 @@
+from django.contrib import admin
+from django.urls import path , include
+
 """
 Django settings for social_media_api project.
 
@@ -124,3 +127,9 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'accounts.CustomUser'
+
+#Include our url in project/url
+urlpatterns =[
+  path('admin/',admin.site.urls),
+  path('accounts/api',include('accounts.urls')),
+]
