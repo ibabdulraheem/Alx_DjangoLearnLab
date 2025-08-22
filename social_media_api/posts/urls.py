@@ -6,7 +6,7 @@ router = DefaultRouter()
 router.register(r'posts', PostViewSet)
 router.register(r'comments', CommentViewSet)
 
-#["api/", "posts.urls"]
+#social_media_api/urls.py doesn't contain: ["api/", "posts.urls"]
 urlpatterns = [
     path('', include(router.urls)),
     path ("api/", "posts.urls"),
