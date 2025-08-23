@@ -8,6 +8,7 @@ from .serializers import RegisterSerializer
 from rest_framework import response, permissions
 from rest_framework import generics, permissions, status
 from rest_framework.views import APIView
+from .models import CustomUser
 
 
 
@@ -45,7 +46,7 @@ class FollowUserView(generics.GenericAPIView):
     def post(self, request, user_id):
         """Current user follows another user"""
         try:
-            target_user = User.objects.get(id=user_id)
+            target_user = CustomUser.objects.get(id=user_id)
         except User.DoesNotExist:
             return Response({"error": "User not found."}, status=status.HTTP_404_NOT_FOUND)
 
@@ -62,7 +63,7 @@ class UnfollowUserView(generics.GenericAPIViewAPIView):
     def post(self, request, user_id):
         """Current user unfollows another user"""
         try:
-            target_user = User.objects.get(id=user_id)
+            target_user = CustomUser.objects.get(id=user_id)
         except User.DoesNotExist:
             return Response({"error": "User not found."}, status=status.HTTP_404_NOT_FOUND)
 
