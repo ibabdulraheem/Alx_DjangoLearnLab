@@ -1,7 +1,10 @@
 from django.shortcuts import render
-from rest_framework import viewsets, permissions
+from rest_framework import viewsets, permissions,generics
 from .models import Post, Comment
 from .serializers import PostSerializer, CommentSerializer
+from rest_framework.response import Response
+from django.db.models import Q
+
 
 
 # Custom permission: only allow authors to edit/delete their own objects
@@ -29,4 +32,13 @@ class CommentViewSet(viewsets.ModelViewSet):
     def perform_create(self, serializer):
         serializer.save(author=self.request.user)
 
+#Creating feed view
+class FeedView(generics.ListAPIView):
+    serializer_class = PostSerializer
+    permission_classes = [permissions.IsAuthenticated]
 
+    def get_queryset(self):        
+        user = self.request.user           # current user
+        following_users = user.following.all()                 # posts by followed users
+        queryset = Post.objects.filter(author__in=following_users).order_by("-created_at")
+        return queryset
