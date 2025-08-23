@@ -11,7 +11,7 @@ router.register(r'comments', CommentViewSet)
 urlpatterns = [
     path('', include(router.urls)),
     path ("api/", "posts.urls"),
-    path("follow_user/<int:user_id>/", FollowUserView.as_view(), name="follow_user"),
-    path("unfollow_user/<int:user_id>/", UnfollowUserView.as_view(), name="unfollow_user"),
+    path("follow/<int:user_id>/", FollowUserView.as_view(), name="follow"),
+    path("unfollow/<int:user_id>/", UnfollowUserView.as_view(), name="unfollow"),
     path("profile/<int:user_id>/", ProfileView.as_view(), name="user-profile"), #Optional
 ]
