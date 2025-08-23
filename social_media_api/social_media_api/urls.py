@@ -23,4 +23,4 @@ urlpatterns = [
     path("api/accounts/", include("accounts.urls")),
     path("api/posts/", include("posts.urls")),
 ]
-#["unfollow/<int:user_id>/", "follow/<int:user_id>"]
+#["unfollow/<int:user_id>/", "follow/<int:user_id>"]/follow/int:user_id/ and /unfollow/int:user_id/).” task
