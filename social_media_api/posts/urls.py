@@ -13,8 +13,8 @@ urlpatterns = [
     path('', include(router.urls)),
     path ("api/", "posts.urls"),
     path("feed/",FeedView.as_view(), name="feed"),
-    path("/posts/<int:post_id>/like/", views.like_post, name="like-post"),
-    path("/posts/<int:post_id>/unlike/", views.unlike_post, name="unlike-post"),
+    path("<int:post_id>/like/", views.like_post, name="like-post"),
+    path("<int:post_id>/unlike/", views.unlike_post, name="unlike-post"),
 ]
 
 #["unfollow/<int:user_id>/", "follow/<int:user_id>"]
