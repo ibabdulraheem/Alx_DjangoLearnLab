@@ -7,6 +7,7 @@ from django.db.models import Q
 
 
 
+
 # Custom permission: only allow authors to edit/delete their own objects
 class IsAuthorOrReadOnly(permissions.BasePermission):
     def has_object_permission(self, request, view, obj):
