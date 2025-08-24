@@ -18,3 +18,4 @@ urlpatterns = [
 ]
 
 #["unfollow/<int:user_id>/", "follow/<int:user_id>"]
+#posts/urls.py doesn't contain: ["<int:pk>/like/", "<int:pk>/unlike/"]
