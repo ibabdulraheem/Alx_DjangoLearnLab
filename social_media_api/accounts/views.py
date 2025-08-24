@@ -69,7 +69,6 @@ class UnfollowUserView(generics.GenericAPIViewAPIView):
 
         request.user.following.remove(target_user)
         return Response({"message": f"You have unfollowed {target_user.username}."}, status=status.HTTP_200_OK)
-    
-#["from rest_framework.authtoken.models import Token", "serializers.CharField()", "Token.objects.create", "get_user_model().objects.create_user"]  
-
+      
+#["CustomUser.objects.all()"]
 
