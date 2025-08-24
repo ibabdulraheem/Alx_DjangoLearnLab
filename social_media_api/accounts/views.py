@@ -1,5 +1,4 @@
-from django.shortcuts import render
-from rest_framework import generics,views
+from rest_framework import generics
 from rest_framework.response import Response
 from rest_framework.authtoken.models import Token
 from rest_framework.authtoken.views import ObtainAuthToken
@@ -7,8 +6,6 @@ from django.contrib.auth import get_user_model
 from .serializers import RegisterSerializer
 from rest_framework import response, permissions
 from rest_framework import generics, permissions, status
-from rest_framework.views import APIView
-from .models import CustomUser
 
 
 
