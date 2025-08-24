@@ -1,45 +1,29 @@
-from django.shortcuts import render
-from rest_framework import viewsets, permissions,generics
-from .models import Post, Comment
-from .serializers import PostSerializer, CommentSerializer
+# notifications/views.py
+from rest_framework import generics, permissions
 from rest_framework.response import Response
-from django.db.models import Q
+from rest_framework.decorators import api_view, permission_classes
+
+from .models import Notification
+from .serializers import NotificationSerializer
 
 
-
-
-# Custom permission: only allow authors to edit/delete their own objects
-class IsAuthorOrReadOnly(permissions.BasePermission):
-    def has_object_permission(self, request, view, obj):
-        if request.method in permissions.SAFE_METHODS:
-            return True
-        return obj.author == request.user  # only author can modify
-
-#post view
-class PostViewSet(viewsets.ModelViewSet):
-    queryset = Post.objects.all().order_by("-created_at")
-    serializer_class = PostSerializer
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly, IsAuthorOrReadOnly]
-
-    def perform_create(self, serializer):
-        serializer.save(author=self.request.user)    #Set the author to the logged-in user
-
-#comment view
-class CommentViewSet(viewsets.ModelViewSet):
-    queryset = Comment.objects.all().order_by("-created_at")
-    serializer_class = CommentSerializer
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly, IsAuthorOrReadOnly]
-
-    def perform_create(self, serializer):
-        serializer.save(author=self.request.user)
-
-#Creating feed view
-class FeedView(generics.ListAPIView):
-    serializer_class = PostSerializer
+class NotificationListView(generics.ListAPIView):
+    serializer_class = NotificationSerializer
     permission_classes = [permissions.IsAuthenticated]
 
-    def get_queryset(self):        
-        user = self.request.user           # current user
-        following_users = user.following.all()                 # posts by followed users
-        queryset = Post.objects.filter(author__in=following_users).order_by("-created_at")
-        return queryset
+    def get_queryset(self):
+        # Fetch notifications for logged-in user, unread first
+        return Notification.objects.filter(recipient=self.request.user).order_by("read", "-timestamp")
+
+
+@api_view(["POST"])
+@permission_classes([permissions.IsAuthenticated])
+def mark_notification_as_read(request, pk):
+    try:
+        notification = Notification.objects.get(pk=pk, recipient=request.user)
+        notification.read = True
+        notification.save()
+        return Response({"detail": "Notification marked as read."})
+    except Notification.DoesNotExist:
+        return Response({"detail": "Notification not found."}, status=404)
+

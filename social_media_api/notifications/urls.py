@@ -1,17 +1,9 @@
-from django.urls import path, include
-from rest_framework.routers import DefaultRouter
-from .views import PostViewSet, CommentViewSet,FeedView
+# notifications/urls.py
+from django.urls import path
+from .views import NotificationListView, mark_notification_as_read
 
-
-router = DefaultRouter()
-router.register(r'posts', PostViewSet)
-router.register(r'comments', CommentViewSet)
-
-#social_media_api/urls.py doesn't contain: ["api/", "posts.urls"]
 urlpatterns = [
-    path('', include(router.urls)),
-    path ("api/", "posts.urls"),
-    path("feed/",FeedView.as_view(), name="feed"),
+    path("", NotificationListView.as_view(), name="notifications-list"),
+    path("<int:pk>/read/", mark_notification_as_read, name="notification-read"),
 ]
 
-#["unfollow/<int:user_id>/", "follow/<int:user_id>"]

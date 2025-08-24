@@ -13,6 +13,7 @@ class Notification(models.Model):
     target_object_id = models.PositiveIntegerField(null=True, blank=True)
     target = GenericForeignKey('target_content_type', 'target_object_id')
     timestamp = models.DateTimeField(auto_now_add=True)
+    read = models.BooleanField(default=False)  # mark as read/unread
 
     class Meta:
         ordering = ['-timestamp']
