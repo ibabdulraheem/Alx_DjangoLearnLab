@@ -1,5 +1,7 @@
 from django.contrib import admin
 from django.urls import path , include
+import os
+from pathlib import Path
 
 
 """
@@ -152,4 +154,67 @@ REST_FRAMEWORK = {
         "rest_framework.filters.OrderingFilter"
         ]
 }
+
+#Configuration settings before Deploment
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+# ---------------------------
+# SECURITY SETTINGS
+# ---------------------------
+
+DEBUG = False  
+
+
+# ---------------------------
+# SECURITY HEADERS
+# ---------------------------
+SECURE_BROWSER_XSS_FILTER = True
+X_FRAME_OPTIONS = "DENY"  # Prevent clickjacking
+SECURE_CONTENT_TYPE_NOSNIFF = True
+SECURE_SSL_REDIRECT = True   # Redirect all HTTP → HTTPS
+
+# ---------------------------
+# SESSION & CSRF SECURITY
+# ---------------------------
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_HTTPONLY = True
+SESSION_COOKIE_HTTPONLY = True
+
+# ---------------------------
+# STATIC & MEDIA
+# ---------------------------
+STATIC_URL = "/static/"
+STATIC_ROOT = BASE_DIR / "staticfiles"
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# ---------------------------
+# LOGGING (Useful for Production)
+# ---------------------------
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "handlers": {
+        "file": {
+            "level": "ERROR",
+            "class": "logging.FileHandler",
+            "filename": BASE_DIR / "django_errors.log",
+        },
+    },
+    "loggers": {
+        "django": {
+            "handlers": ["file"],
+            "level": "ERROR",
+            "propagate": True,
+        },
+    },
+}
+
+# ---------------------------
+# ALLOWED HEADERS (if using reverse proxy like Nginx)
+# ---------------------------
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+
 
